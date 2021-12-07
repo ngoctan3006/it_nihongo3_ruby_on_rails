@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thefirstrails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <header>
+        <%= link_to "ホーム", root_url %>
+        <% if user_signed_in? %>
+        <br />こんにちは、<%= link_to current_user.name, users_show_path %><br />
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "サインイン", new_user_session_path %>
+        <%= link_to "ユーザ登録", new_user_registration_path %>
+      <% end %>
+      <hr />
+      </header>
+     <main>
+        <%= yield %>
+     </main>
+
+  </body>
+</html>
